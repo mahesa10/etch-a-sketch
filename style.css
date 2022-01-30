@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&family=Roboto+Mono:wght@500;600;700&display=swap');
+
 :root {
   --grid-size: 30px;
 }
@@ -15,7 +17,17 @@ html {
 }
 
 body {
-  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  background-color: #CDF7F6;
+  align-items: center;
+  color: #343434;
+  font-family: 'Quattrocento Sans', sans-serif;
+}
+
+h1 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
 }
 
 .container {
@@ -24,6 +36,7 @@ body {
   height: 480px;
   background-color: white;
   flex-wrap: wrap;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 .grid {
@@ -31,4 +44,71 @@ body {
   height: var(--grid-size);
   /* border: 0.5px solid black; */
   background-color: white;
+}
+
+.btn-group {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  font-family: inherit;
+  font-size: 18px;
+  border: none;
+  background-color: #343434;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.range-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.range-container > label {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+#grid-number-range {
+  -webkit-appearance: none;
+  border-radius: 10px;
+  background: #d3d3d3;
+  outline: none;
+  height: 10px;
+  width: 150px;
+}
+
+#grid-number-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #343434;
+  cursor: pointer;
+}
+
+#grid-number-range::-moz-range-thumb {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #343434;
+  cursor: pointer;
+}
+
+#btn-erase:active {
+  background-color: #000000;
+}
+
+#btn-random-color:focus, #btn-black-color:focus {
+  background-color: #000000;
 }

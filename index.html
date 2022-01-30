@@ -9,7 +9,21 @@
   <script src="./script.js" defer></script>
 </head>
 <body>
-  <button id="change-grid-btn">Change Grid</button>
-  <div class="container"></div>
+  <div class="header">
+    <h1>Etch-a-Sketch</h1>
+  </div>
+
+  <div class="content">
+    <div class="btn-group">
+      <button id="btn-erase">Erase</button>
+      <button id="btn-random-color">Rainbow</button>
+      <button id="btn-black-color">Black</button>
+      <div class="range-container">
+        <label id="range-label">16x16</label>
+        <input type="range" min="8" max="64" value="16" id="grid-number-range">
+      </div>
+    </div>
+    <div class="container"></div>
+  </div>
 </body>
 </html>

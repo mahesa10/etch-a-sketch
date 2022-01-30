@@ -1,8 +1,14 @@
 const container = document.querySelector('.container')
+const changeBtn = document.querySelector('#btn-change-grid');
+const root = document.documentElement;
+const eraseBtn = document.querySelector('#btn-erase');
+const blackColorBtn = document.querySelector('#btn-black-color');
+const randomColorBtn = document.querySelector('#btn-random-color');
+const rangeLabel = document.querySelector('#range-label');
+const rangeInput = document.querySelector('#grid-number-range');
+
 const createDiv = document.createElement('div');
 createDiv.classList.add("grid");
-const changeBtn = document.querySelector('#change-grid-btn');
-const root = document.documentElement;
 
 function createGrid(gridNum) {
   let totalSquares = gridNum * gridNum;
@@ -21,9 +27,20 @@ function addEventtoGrid() {
   })
 }
 
+let gridColor = "black"
+
+function colorMode(color) {
+  gridColor = color
+}
+
 function changeGridColor(e) {
-  let grid = e.target;
-  grid.style.backgroundColor = 'blue';
+  const grid = e.target;
+  if (gridColor === "black") {
+    grid.style.backgroundColor = `#000000`;
+  } else if (gridColor === "random") {
+    const randomColor = Math.floor(Math.random()*16777215).toString(16);
+    grid.style.backgroundColor = `#${randomColor}`;
+  }
 }
 
 function removeColor() {
@@ -31,25 +48,23 @@ function removeColor() {
   grids.forEach(grid => grid.style.backgroundColor = "white");
 }
 
-function askGridNumber() {
-  let gridNumInput = prompt("Enter grid number:");
-  if (gridNumInput > 64) {
-    alert("Please enter a number no more than 64");
-    return;
-  }
-  changeGridNumber(gridNumInput);
-  removeColor();
-}
-
-changeBtn.addEventListener('click', askGridNumber);
-
 function changeGridNumber(number) {
   container.innerHTML = "";
 
   createGrid(number);
   addEventtoGrid();
+  removeColor();
 }
 
+function updateGridNumberLabel(number) {
+  rangeLabel.textContent = `${number}x${number}`
+}
+
+eraseBtn.addEventListener('click', removeColor);
+randomColorBtn.addEventListener('click', () => colorMode("random"));
+blackColorBtn.addEventListener('click', () => colorMode("black"));
+rangeInput.addEventListener('change', () => changeGridNumber(rangeInput.value));
+rangeInput.addEventListener('mousemove', () => updateGridNumberLabel(rangeInput.value));
 
 window.addEventListener("load", () => {
   createGrid(16);
